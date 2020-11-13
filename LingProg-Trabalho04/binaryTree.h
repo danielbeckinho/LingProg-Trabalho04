@@ -50,24 +50,21 @@ template <class T> class Tree {
         };
         ~Tree();
 
-        template <class T> 
-        Node<T> &operator() (std::string &); //busca sobrecarreagda por nome 
+        Node<T> *operator() (std::string &); //busca sobrecarreagda por nome 
 
-        template <class T> 
-        Node<T> &operator+=(T &); //insere um paciente criando novo node
+        Node<T> *operator+=(T &); //insere um paciente criando novo node
 
-        template <class T>
-        Node<T> &operator+=(Node<T> &); //insere novo node ou arvore de nodes
+        //Node<T> &operator+=(Node<T> &); //insere novo node ou arvore de nodes
 
-        template <class T>
         Tree<T> &operator+=(Tree &); //concatena as arvores adicionando os nodes de uma na outra
 
-        template <class T>
-        void insertKey(T & , Node<T> *);
 
     private:
         static Node<T> *root = NULL;
 
+        Node<T> *insertKey(T & , Node<T> *);
+
+        Node<T> *searchKey(T &, Node<T> *, bool);
 
 };
 
@@ -81,12 +78,13 @@ Node<T>::Node(T &key=NULL) {
 };
 
 template <class T>
-void Tree<T>::insertKey(T &keyToInsert, Node<T> *nodeWhereToInsert /*= root*/) {
+Node<T> *Tree<T>::insertKey(T &keyToInsert, Node<T> *nodeWhereToInsert = root) {
     if (keyToInsert < nodeWhereToInsert->key) { //se menor olha esquerda
         if (nodeWhereToInsert->leftPtr == NULL) {
             nodeWhereToInsert->leftPtr = &(new (Node<T>(keyToInsert)));
             /*nodeWhereToInsert->leftPtr = &(new (Node<T>()));
             nodeWhereToInsert->leftPtr.setKey(keyToInsert); */
+            return nodeWhereToInsert->leftPtr;
         } 
         else { insertKey(keyToInsert, nodeWhereToInsert->leftPtr); }
     }
@@ -96,19 +94,51 @@ void Tree<T>::insertKey(T &keyToInsert, Node<T> *nodeWhereToInsert /*= root*/) {
             nodeWhereToInsert->rightPtr = &(new (Node<T>(keyToInsert)));
             /*nodeWhereToInsert->rightPtr = &(new (Node<T>()));
             nodeWhereToInsert->rightPtr.setKey(keyToInsert); */
+            return nodeWhereToInsert->rightPtr;
         }
         else { insertKey(keyToInsert, nodeWhereToInsert->rightPtr); }
     }
 
-    else { std::cout<< "Insercao falhou, provavelmente paciente jah existe."<< std::endl; }
+    else { return nullptr; }
 };
 
 template <class T> 
-Node<T> &Tree<T>::operator+=(T &keyToInsert) { 
-    if (nodeToInsert->getKey() > this->getKey()) {
-        
-    }
+Node<T> *Tree<T>::operator+=(T &keyToInsert) { 
+    insertKey(keyToInsert);
 };
+
+template <class T> 
+Node<T> *Tree<T>::searchKey(T &key, Node<T> *nodeWhereToSearch = root, bool nodeIsRoot = true) {
+    /*should only be called internally by overloaded search operator 
+    nodeIsRoot is to avoid returning NULL on the first call
+    added so the func can be recursively called recursively with ease*/
+    if (nodeWhereToSearch->key == NULL) { nodeIsRoot ? (nodeIsRoot = false) : (return NULL;) } //if this is the first NULL encountered, ie, node is in fact root then change nodeIsRoot variable and continue 
+
+    else {
+        if (key == nodeWhereToSearch->key) {return nodeWhereToSearch;}
+
+        if (key < nodeWhereToSearch->key) {return searchKey(key, nodeWhereToSearch->leftPtr, nodeIsRoot);}
+
+        else {return searchKey(key, nodeWhereToSearch->rightPtr, nodeIsRoot);}
+    } 
+};
+
+template <class T>
+Node<T> *Tree<T>::operator() (std::string &key) {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif
