@@ -43,7 +43,7 @@ template <class T> class Node {
 
 };
 
-class Tree {
+template <class T> class Tree {
     public:
         Tree() {
 
@@ -59,19 +59,14 @@ class Tree {
         template <class T>
         Node<T> &operator+=(Node<T> &); //insere novo node ou arvore de nodes
 
-        Tree &operator+=(Tree &); //concatena as arvores adicionando os nodes de uma na outra
+        template <class T>
+        Tree<T> &operator+=(Tree &); //concatena as arvores adicionando os nodes de uma na outra
 
         template <class T>
         void insertKey(T & , Node<T> *);
 
     private:
-        template <class T>
-        Node<T> root; // = &(Node::Node());
-
-        template <class T>
-        Node<T> *root{nullptr}; // = NULL;
-
-        Node<T> *root;
+        static Node<T> *root = NULL;
 
 
 };
@@ -86,12 +81,30 @@ Node<T>::Node(T &key=NULL) {
 };
 
 template <class T>
-void Tree::insertKey(T &key,Node<T> *nodeWhereToInsert) {
+void Tree<T>::insertKey(T &keyToInsert, Node<T> *nodeWhereToInsert /*= root*/) {
+    if (keyToInsert < nodeWhereToInsert->key) { //se menor olha esquerda
+        if (nodeWhereToInsert->leftPtr == NULL) {
+            nodeWhereToInsert->leftPtr = &(new (Node<T>(keyToInsert)));
+            /*nodeWhereToInsert->leftPtr = &(new (Node<T>()));
+            nodeWhereToInsert->leftPtr.setKey(keyToInsert); */
+        } 
+        else { insertKey(keyToInsert, nodeWhereToInsert->leftPtr); }
+    }
 
+    else if (keyToInsert > nodeWhereToInsert->key) {
+        if (nodeWhereToInsert->rightPtr == NULL) {
+            nodeWhereToInsert->rightPtr = &(new (Node<T>(keyToInsert)));
+            /*nodeWhereToInsert->rightPtr = &(new (Node<T>()));
+            nodeWhereToInsert->rightPtr.setKey(keyToInsert); */
+        }
+        else { insertKey(keyToInsert, nodeWhereToInsert->rightPtr); }
+    }
+
+    else { std::cout<< "Insercao falhou, provavelmente paciente jah existe."<< std::endl; }
 };
 
 template <class T> 
-Node<T> &Tree::operator+=(T &keyToInsert) { 
+Node<T> &Tree<T>::operator+=(T &keyToInsert) { 
     if (nodeToInsert->getKey() > this->getKey()) {
         
     }
