@@ -17,6 +17,6 @@ Tree<Patient> Cadastro::getTreeCad() {
     return *(this->treeCad);
 }
 
-void Cadastro::concatCad(Cadastro &cadastroToConcat) { //essa implementacao ta idiota, arrumar
-    (*treeCad) += (cadastroToConcat.getTreeCad());
+void Cadastro::concatCad(Cadastro &cadastroToConcat) { 
+    (*treeCad) += *(cadastroToConcat.treeCad);
 }
