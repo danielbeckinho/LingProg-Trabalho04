@@ -2,6 +2,7 @@
 #define BINARYTREE_H
 
 #include <string>
+#include "customExceptions.h"
 
 
 template <class U> class Node {
@@ -13,7 +14,6 @@ template <class U> class Node {
 
     public:
         Node(U &key = NULL) {
-            //cria novo node com key do tipo U e leftPtr e rightPtr null, como todo node vai ser inserido os ptr serao sobrescritos 
             setkey(key);
             setLeftPtr(NULL);
             setRightPtr(NULL);
@@ -105,12 +105,14 @@ Node<U> *Tree<U>::insertKey(U &keyToInsert, Node<U> *nodeWhereToInsert) {
         else { insertKey(keyToInsert, nodeWhereToInsert->rightPtr); }
     }
 
-    else { return nullptr; }
+    else { return NULL; } //se a key nao eh maior nem menor ela eh igual
 };
 
 template <class U> 
 Node<U> *Tree<U>::operator+=(U &keyToInsert) { 
-    insertKey(keyToInsert, this->root);
+    Node<U> *nodeInsertedPtr = insertKey(keyToInsert, this->root);
+    if (nodeInsertedPtr == NULL) {throw ExceptionPatientAlreadyExists();}
+    else {return nodeInsertedPtr;}
 };
 
 
@@ -134,12 +136,14 @@ Tree<U> *Tree<U>::operator+= (Tree &treeToConcat) {
 
 
 template <class U> 
-Node<U> *Tree<U>::searchKey(std::string &key, Node<U> *nodeWhereToSearch = root) {
+Node<U> *Tree<U>::searchKey(std::string &key, Node<U> *nodeWhereToSearch) {
     /*should only be called internally by overloaded search operator */
 
     if (nodeWhereToSearch->key == key) {return nodeWhereToSearch;}
 
-    if (nodeWhereToSearch->key > key) {return searchKey(key, nodeWhereToSearch->leftPtr);}
+    if (nodeWhereToSearch->leftPtr == NULL) && (nodeWhereToSearch->rightPtr == NULL) {return NULL;}
+
+    else if (nodeWhereToSearch->key > key) {return searchKey(key, nodeWhereToSearch->leftPtr);}
 
     else {return searchKey(key, nodeWhereToSearch->rightPtr);}
 
@@ -147,7 +151,9 @@ Node<U> *Tree<U>::searchKey(std::string &key, Node<U> *nodeWhereToSearch = root)
 
 template <class U>
 Node<U> *Tree<U>::operator() (std::string &key) {
-    searchKey(key);
+    Node<U> * nodeFoundPtr = searchKey(key, this->root);
+    if (nodeFoundPtr == NULL) {throw ExceptionPatientNotFound();} 
+    else {return nodeFoundPtr;}
 }
 
 

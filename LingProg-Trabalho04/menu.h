@@ -13,13 +13,19 @@
 class Menu {
 
     public:
+
+        Menu() {exitProgramTrigger = 0;}
+
         int mainMenu() ;
 
+        Cadastro *cadastro;
+
+        int getExitProgramTrigger() const;
 
     private:
+        static int exitProgramTrigger;
 
-
-}
+};
 
 
 
