@@ -12,8 +12,6 @@ int main() {
 
     Cadastro cadastroMain; cadastroMain.treeCad = treePtr;
 
-    //cadastroMain.setTreeCad(treePtr);
-
     Menu menu = Menu();
 
     menu.cadastro = &cadastroMain;

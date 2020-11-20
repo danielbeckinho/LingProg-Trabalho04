@@ -10,8 +10,6 @@
 class Cadastro {
     public:
 
-        //Cadastro(Node<Patient> *);
-
         void addCad(Patient *);
 
         void srcCad(std::string &);
@@ -21,8 +19,6 @@ class Cadastro {
         void concatCad(Cadastro &);
 
         Node<Patient> getTreeCad();
-        
-        //void setTreeCad(Node<Patient> *);
 
         Node<Patient> *treeCad;
     private:

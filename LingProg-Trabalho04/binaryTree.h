@@ -21,7 +21,6 @@ template <class U> class Node {
         ~Node() {
             this->leftPtr->~Node();
             this->rightPtr->~Node();
-            //*(this->rightPtr)->~Node();
             delete this;
         } 
 
@@ -60,7 +59,6 @@ template <class U> class Node {
 template <class U>
 Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
     if (nodeWhereToInsert->key == NULL) { //caso root == NULL ,ie, arvore vazia
-        //nodeWhereToInsert = new Node(keyToInsert);
         nodeWhereToInsert->key = keyToInsert;
         return nodeWhereToInsert;
     }
@@ -70,8 +68,7 @@ Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
     else if (*keyToInsert < *nodeWhereToInsert->key) { //se menor olha esquerda
         if (nodeWhereToInsert->leftPtr == NULL) {
             nodeWhereToInsert->leftPtr = new Node(keyToInsert);
-            /*nodeWhereToInsert->leftPtr = &(new (Node<U>()));
-            nodeWhereToInsert->leftPtr.setKey(keyToInsert); */
+
             return nodeWhereToInsert->leftPtr;
         } 
         else { insertKey(keyToInsert, nodeWhereToInsert->leftPtr); }
@@ -80,23 +77,18 @@ Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
     else if (*keyToInsert > *nodeWhereToInsert->key) {
         if (nodeWhereToInsert->rightPtr == NULL) {
             nodeWhereToInsert->rightPtr = new Node(keyToInsert);
-            /*nodeWhereToInsert->rightPtr = &(new (Node<U>(keyToInsert))); */
-            /*nodeWhereToInsert->rightPtr = &(new (Node<U>()));
-            nodeWhereToInsert->rightPtr.setKey(keyToInsert); */
+
             return nodeWhereToInsert->rightPtr;
         }
         else { insertKey(keyToInsert, nodeWhereToInsert->rightPtr); }
     }
 
-    else { return NULL; } //se a key nao eh maior nem menor ela eh igual
+    else { return NULL; } //soh por precaucao, nap eh pra chegar aqui
 };
 
 template <class U> 
 Node<U> *Node<U>::operator+=(U *keyToInsert) { 
-    std::cout << "operator+=" << std::endl;
-    Node<U> *nodeInsertedPtr = insertKey(keyToInsert, this);
-    if (nodeInsertedPtr == NULL) {throw ExceptionPatientAlreadyExists();}
-    else {return nodeInsertedPtr;}
+    return insertKey(keyToInsert, this); //insertKey que dispara o erro quando se faz necessario, pra colocar o erro aqui envolveria mudar muito codigo
 };
 
 
@@ -106,7 +98,6 @@ template <class U>
 void Node<U>::insertTree(Node<U> *nodeToInsert, Node<U> *hostTree) {
     //vai de node em node inserindo as keys na hostTree
     insertKey(nodeToInsert->key, hostTree);
-    //if (nodeToInsert->key != NULL) { insertKey(nodeToInsert->key, hostTree); }
     if (nodeToInsert->leftPtr != NULL) { insertTree(nodeToInsert->leftPtr, hostTree); }
     if (nodeToInsert->rightPtr != NULL) { insertTree(nodeToInsert->rightPtr, hostTree); }
     else if ((nodeToInsert->leftPtr == NULL) && (nodeToInsert->rightPtr == NULL)) {;}
@@ -114,7 +105,7 @@ void Node<U>::insertTree(Node<U> *nodeToInsert, Node<U> *hostTree) {
 
 template <class U>
 void Node<U>::operator+= (Node<U> *treeToConcat) {
-    insertTree(treeToConcat, this); //usa this como hostTree e chama a func no root da arvore a ser inserida
+    insertTree(treeToConcat, this); //usa this como hostTree, assume que esta recebendo arvore por root
 }
 
 
@@ -138,6 +129,7 @@ template <class U>
 Node<U> *Node<U>::operator() (std::string &key) {
     Node<U> * nodeFoundPtr = searchKey(key, this);
     if (nodeFoundPtr == NULL) {throw ExceptionPatientNotFound();} 
+
     else {return nodeFoundPtr;}
 }
 

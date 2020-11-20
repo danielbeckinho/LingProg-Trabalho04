@@ -15,4 +15,3 @@ $(PROGRAM): $(OBJECTS)
 
 clean: 
 	rm -vf *.o
-	#rm -vf mainProgram *.o

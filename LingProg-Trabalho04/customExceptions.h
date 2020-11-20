@@ -2,7 +2,6 @@
 #define CUSTOMEXCEPTIONS_H
 
 #include <stdexcept>
-//#include <exception>
 
 
 class ExceptionPatientAlreadyExists: public std::runtime_error {

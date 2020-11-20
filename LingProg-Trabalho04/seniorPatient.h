@@ -21,11 +21,4 @@ class SeniorPatient: public Patient {
 };
 
 
-
-
-
-
-
-
-
 #endif

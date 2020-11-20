@@ -23,6 +23,7 @@ class Menu {
         int getExitProgramTrigger() const;
         void setExitProgramTrigger(int);
         int exitProgramTrigger;
+        
     private:
 
 };

@@ -67,7 +67,6 @@ int Menu::mainMenu() {
                 std::cout << pac;
                 this->cadastro->addCad(pac);
                 std::cout << std::endl;
-                //this->cadastro->addCad(new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
             }
 
             else if (tipoPaciente == 2) { //geriatrico
@@ -81,7 +80,6 @@ int Menu::mainMenu() {
                 this->cadastro->addCad(pac);
                 std::cout << std::endl;
 
-                //this->cadastro->addCad(new SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac));
             }
 
             else {std::cout << "Opcao invalida, tente novamente." <<std::endl;}
@@ -96,7 +94,7 @@ int Menu::mainMenu() {
             return 0;
         }
 
-        else {std::cout << "Opcao invalida, tente novamente." << std::endl;}
+        else {std::cin.ignore(); std::cout << "Opcao invalida, tente novamente." << std::endl;}
 
     this->mainMenu();
 

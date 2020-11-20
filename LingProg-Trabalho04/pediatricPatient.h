@@ -18,6 +18,4 @@ class PediatricPatient: public Patient {
 
 };
 
-
-
 #endif
