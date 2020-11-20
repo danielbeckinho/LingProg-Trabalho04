@@ -25,7 +25,7 @@ template <class U> class Node {
             delete this;
         } 
 
-        U *getKey() const {return &(this->key);}
+        U *getKey() {return (this->key);}
         void setKey(U &key) {this->key = key;}
 
         Node *getLeftPtr() const {return this->leftPtr;}

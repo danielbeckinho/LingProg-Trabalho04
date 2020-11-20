@@ -7,7 +7,7 @@ void Cadastro::addCad(Patient *patient) {
 }
 
 void Cadastro::srcCad(std::string &nomePaciente) {
-    (*treeCad)(nomePaciente);
+    std::cout << (*treeCad)(nomePaciente)->getKey();
 }
 
 void Cadastro::showCad() {
