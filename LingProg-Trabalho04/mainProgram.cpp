@@ -14,6 +14,8 @@ int main() {
 
     Menu menu = Menu();
 
+    menu.demoConcatCad();
+
     menu.cadastro = &cadastroMain;
 
     menu.setExitProgramTrigger(0);

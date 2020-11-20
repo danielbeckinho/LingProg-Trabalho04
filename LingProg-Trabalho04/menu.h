@@ -24,6 +24,8 @@ class Menu {
         void setExitProgramTrigger(int);
         int exitProgramTrigger;
         
+        void demoConcatCad();
+
     private:
 
 };

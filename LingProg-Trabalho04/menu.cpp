@@ -105,3 +105,40 @@ void Menu::setExitProgramTrigger(int val) {exitProgramTrigger = val;}
 int Menu::getExitProgramTrigger() const {
     return exitProgramTrigger;
 }
+
+void Menu::demoConcatCad() {
+    std::cout << "Bem-vindo aa demonstracao de concatenacao de arvores de pacientes!" << std::endl;
+
+    Cadastro cadastroEsq, cadastroDir;
+
+    cadastroEsq.treeCad = new Node<Patient>(NULL);
+    cadastroDir.treeCad = new Node<Patient>(NULL);
+
+    Patient *patEsq1 = new PediatricPatient("Joazinho da Silva", 12, "M", "Rogerio da Silva", "Bola");    
+    Patient *patEsq2 = new SeniorPatient("Juracy", 77, "F", "Jurandir", "esposo");
+    Patient *patEsq3 = new SeniorPatient("Valterlucio", 67, "M", "Wanderleya", "filha");
+
+    Patient *patDir1 = new PediatricPatient("Marizinha", 11, "F", "Flavio", "Estilingue");
+    Patient *patDir2 = new PediatricPatient("Artur", 8, "M", "Dulce", "Boneco");
+    Patient *patDir3 = new SeniorPatient("Samara", 81, "F", "Janice", "esposa");
+
+    cadastroEsq.addCad(patEsq1); cadastroEsq.addCad(patEsq2); cadastroEsq.addCad(patEsq3);
+    cadastroDir.addCad(patDir1); cadastroDir.addCad(patDir2); cadastroDir.addCad(patDir3);
+
+    std::cout << "      CadastroEsq: " << std::endl;
+    cadastroEsq.showCad();
+    std::cout << "\n\n\n";
+
+    std::cout << "      CadastroDir: " << std::endl;
+    cadastroDir.showCad();
+    std::cout << "\n\n\n";
+
+    std::cout << "\n\n\n\n\n"; 
+
+    std::cout << "      Cadastros concatenados: " << std::endl;
+    cadastroEsq.concatCad(cadastroDir);
+    cadastroEsq.showCad();
+
+    std::cout << "\n\n\n" << "****************Fim da Demonstracao****************" << std::endl;
+
+}
