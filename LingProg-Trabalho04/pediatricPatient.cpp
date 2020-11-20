@@ -1,4 +1,5 @@
 # include "pediatricPatient.h"
+#include <string>
 
 PediatricPatient::PediatricPatient(const std::string nome, const int idade, const std::string generoMF, const std::string nomeAcompa, const std::string brinquedoFav): 
     Patient(nome, idade, generoMF) {

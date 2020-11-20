@@ -63,7 +63,7 @@ int Menu::mainMenu() {
                 std::getline(std::cin, nomeBrinquedoPac);
                 std::cout << std::endl;
 
-                this->cadastro->addCad(PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
+                this->cadastro->addCad(new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
             }
 
             else if (tipoPaciente == 2) { //geriatrico
@@ -72,7 +72,7 @@ int Menu::mainMenu() {
                 std::getline(std::cin, relacaoAcompPac);
                 std::cout << std::endl;
 
-                this->cadastro->addCad(SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac));
+                this->cadastro->addCad(new SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac));
             }
 
             else {std::cout << "Opcao invalida, tente novamente." <<std::endl;}
@@ -83,7 +83,7 @@ int Menu::mainMenu() {
         }
 
         else if (seletor == 0) {
-            exitProgramTrigger = 1;
+            this->setExitProgramTrigger(1);
             return 0;
         }
 
@@ -93,6 +93,7 @@ int Menu::mainMenu() {
 
 }
 
+void Menu::setExitProgramTrigger(int val) {exitProgramTrigger = val;}
 
 int Menu::getExitProgramTrigger() const {
     return exitProgramTrigger;

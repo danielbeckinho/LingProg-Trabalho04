@@ -1,7 +1,7 @@
 #include "cadastro.h"
 
 
-void Cadastro::addCad(Patient &patient) {
+void Cadastro::addCad(Patient *patient) {
     (*treeCad)+=patient;
 }
 
@@ -10,13 +10,13 @@ void Cadastro::srcCad(std::string &nomePaciente) {
 }
 
 void Cadastro::showCad() {
-    std::cout << *(this->treeCad);
+    std::cout << (this->treeCad);
 }
 
-Tree<Patient> Cadastro::getTreeCad() {
+Node<Patient> Cadastro::getTreeCad() {
     return *(this->treeCad);
 }
 
 void Cadastro::concatCad(Cadastro &cadastroToConcat) { 
-    (*treeCad) += *(cadastroToConcat.treeCad);
+    (*treeCad) += (cadastroToConcat.treeCad);
 }

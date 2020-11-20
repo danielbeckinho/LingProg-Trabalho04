@@ -21,9 +21,9 @@ class Menu {
         Cadastro *cadastro;
 
         int getExitProgramTrigger() const;
-
+        void setExitProgramTrigger(int);
+        int exitProgramTrigger;
     private:
-        static int exitProgramTrigger;
 
 };
 

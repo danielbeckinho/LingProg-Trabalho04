@@ -9,7 +9,7 @@
 
 class Cadastro {
     public:
-        void addCad(Patient &);
+        void addCad(Patient *);
 
         void srcCad(std::string &);
 
@@ -17,10 +17,10 @@ class Cadastro {
 
         void concatCad(Cadastro &);
 
-        Tree<Patient> getTreeCad() ;
+        Node<Patient> getTreeCad() ;
 
     private:
-        Tree<Patient> *treeCad;
+        Node<Patient> *treeCad;
 
 };
 

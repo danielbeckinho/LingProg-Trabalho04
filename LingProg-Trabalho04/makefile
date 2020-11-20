@@ -1,7 +1,7 @@
 CC = g++
 CPPFLAGS = -Wall 
 
-OBJECTS = mainProgram.o binaryTree.o cadastro.o customExceptions.o mainProgram.o menu.o patient.o pediatricPatient.o seniorPatient.o 
+OBJECTS = mainProgram.o cadastro.o menu.o patient.o pediatricPatient.o seniorPatient.o 
 
 PROGRAM = mainProgram
 
