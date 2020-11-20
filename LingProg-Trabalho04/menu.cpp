@@ -53,19 +53,20 @@ int Menu::mainMenu() {
 
             std::cout << "Nome do acompanhante: ";
             std::string nomeAcompPac;
-            std::cin.ignore();
+            //std::cin.ignore();
             std::getline(std::cin, nomeAcompPac);
 
             if (tipoPaciente == 1) { //pediatrico
                 std::cout << "Brinquedo favorito: ";
                 std::string nomeBrinquedoPac;
-                std::cin.ignore();
+                //std::cin.ignore();
                 std::getline(std::cin, nomeBrinquedoPac);
                 std::cout << std::endl;
 
-                Patient *p = new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac);
-                std::cout << *p;
-                this->cadastro->addCad(p);
+                Patient *pac = new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac);
+                std::cout << pac;
+                this->cadastro->addCad(pac);
+                std::cout << std::endl;
                 //this->cadastro->addCad(new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
             }
 
@@ -75,7 +76,12 @@ int Menu::mainMenu() {
                 std::getline(std::cin, relacaoAcompPac);
                 std::cout << std::endl;
 
-                this->cadastro->addCad(new SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac));
+                Patient *pac = new SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac);
+                std::cout << pac;
+                this->cadastro->addCad(pac);
+                std::cout << std::endl;
+
+                //this->cadastro->addCad(new SeniorPatient(nomePac, idadePac, generoPac, nomeAcompPac, relacaoAcompPac));
             }
 
             else {std::cout << "Opcao invalida, tente novamente." <<std::endl;}

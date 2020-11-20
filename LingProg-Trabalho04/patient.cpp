@@ -34,13 +34,13 @@ bool Patient::operator==(const std::string &nome) {return (this->name == nome);}
 
 void Patient::getSpecificInformation() const {;}
 
-std::ostream &operator<<(std::ostream &out, const Patient &patient) {
+std::ostream &operator<<(std::ostream &out, const Patient *patient) {
     out << "    Dados do paciente:" << std::endl; 
     
-    out << "Nome: " << patient.getName() << " (" << patient.getGender() << ") \n" 
-        << "Idade: " << patient.getAge() << std::endl;
+    out << "Nome: " << patient->getName() << " (" << patient->getGender() << ") \n" 
+        << "Idade: " << patient->getAge() << std::endl;
     
-    patient.getSpecificInformation();
+    patient->getSpecificInformation();
     
     out << std::endl;
 }

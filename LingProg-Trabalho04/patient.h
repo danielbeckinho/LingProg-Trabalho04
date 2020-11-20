@@ -5,7 +5,7 @@
 #include <iostream>
 
 class Patient{
-  friend std::ostream &operator<<(std::ostream&, const Patient &);
+  friend std::ostream &operator<<(std::ostream&, const Patient *);
   
   public:
     Patient(const std::string, const int, const std::string);

@@ -60,7 +60,8 @@ template <class U> class Node {
 template <class U>
 Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
     if (nodeWhereToInsert->key == NULL) { //caso root == NULL ,ie, arvore vazia
-        nodeWhereToInsert = new Node(keyToInsert);
+        //nodeWhereToInsert = new Node(keyToInsert);
+        nodeWhereToInsert->key = keyToInsert;
         return nodeWhereToInsert;
     }
 
@@ -90,6 +91,7 @@ Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
 
 template <class U> 
 Node<U> *Node<U>::operator+=(U *keyToInsert) { 
+    std::cout << "operator+=" << std::endl;
     Node<U> *nodeInsertedPtr = insertKey(keyToInsert, this);
     if (nodeInsertedPtr == NULL) {throw ExceptionPatientAlreadyExists();}
     else {return nodeInsertedPtr;}
