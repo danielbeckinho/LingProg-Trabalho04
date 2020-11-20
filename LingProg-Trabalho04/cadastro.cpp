@@ -2,7 +2,6 @@
 
 
 void Cadastro::addCad(Patient *patient) {
-    std::cout << "addcad()" << std::endl;
     (*treeCad)+=patient;
 }
 
