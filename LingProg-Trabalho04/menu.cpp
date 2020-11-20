@@ -63,7 +63,10 @@ int Menu::mainMenu() {
                 std::getline(std::cin, nomeBrinquedoPac);
                 std::cout << std::endl;
 
-                this->cadastro->addCad(new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
+                Patient *p = new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac);
+                std::cout << *p;
+                this->cadastro->addCad(p);
+                //this->cadastro->addCad(new PediatricPatient(nomePac, idadePac, generoPac, nomeAcompPac, nomeBrinquedoPac));
             }
 
             else if (tipoPaciente == 2) { //geriatrico

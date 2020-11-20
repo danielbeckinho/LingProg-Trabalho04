@@ -59,7 +59,7 @@ template <class U> class Node {
 
 template <class U>
 Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
-    if (nodeWhereToInsert == NULL) { //caso root == NULL ,ie, arvore vazia
+    if (nodeWhereToInsert->key == NULL) { //caso root == NULL ,ie, arvore vazia
         nodeWhereToInsert = new Node(keyToInsert);
         return nodeWhereToInsert;
     }

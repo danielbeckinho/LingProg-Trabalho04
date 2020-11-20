@@ -17,6 +17,12 @@ Node<Patient> Cadastro::getTreeCad() {
     return *(this->treeCad);
 }
 
+//void Cadastro::setTreeCad(Node<Patient> *treePtr) {this->treeCad = treePtr;};
+
 void Cadastro::concatCad(Cadastro &cadastroToConcat) { 
     (*treeCad) += (cadastroToConcat.treeCad);
 }
+
+//Cadastro::Cadastro(Node<Patient> *treePtr) {
+//    treeCad = treePtr;
+//}

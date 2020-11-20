@@ -5,3 +5,10 @@ ExAval03/main.cpp
 ExAval03/Makefile
 ExAval03/README
 LingProg-Trabalho04/INSTRUCOES.txt
+LingProg-Trabalho04/cadastro.o
+LingProg-Trabalho04/mainProgram.o
+LingProg-Trabalho04/menu.o
+LingProg-Trabalho04/patient.o
+LingProg-Trabalho04/pediatricPatient.o
+LingProg-Trabalho04/seniorPatient.o
+LingProg-Trabalho04/mainProgram

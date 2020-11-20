@@ -1,5 +1,5 @@
 CC = g++
-CPPFLAGS = -Wall 
+CPPFLAGS = -Wall -g
 
 OBJECTS = mainProgram.o cadastro.o menu.o patient.o pediatricPatient.o seniorPatient.o 
 
@@ -14,4 +14,5 @@ $(PROGRAM): $(OBJECTS)
 	$(CC) $(CPPFLAGS) -c $<
 
 clean: 
-	rm -vf mainProgram *.o
+	rm -vf *.o
+	#rm -vf mainProgram *.o

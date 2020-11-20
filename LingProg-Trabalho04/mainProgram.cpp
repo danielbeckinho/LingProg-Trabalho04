@@ -8,7 +8,11 @@
 
 int main() {
 
-    Cadastro cadastroMain;
+    Node<Patient> *treePtr = new Node<Patient>(NULL);
+
+    Cadastro cadastroMain; cadastroMain.treeCad = treePtr;
+
+    //cadastroMain.setTreeCad(treePtr);
 
     Menu menu = Menu();
 
