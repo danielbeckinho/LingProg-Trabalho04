@@ -65,6 +65,8 @@ Node<U> *Node<U>::insertKey(U *keyToInsert, Node<U> *nodeWhereToInsert) {
         return nodeWhereToInsert;
     }
 
+    else if (*keyToInsert == *nodeWhereToInsert->key) {throw ExceptionPatientAlreadyExists();}
+
     else if (*keyToInsert < *nodeWhereToInsert->key) { //se menor olha esquerda
         if (nodeWhereToInsert->leftPtr == NULL) {
             nodeWhereToInsert->leftPtr = new Node(keyToInsert);
